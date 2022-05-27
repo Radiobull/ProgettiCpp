@@ -14,40 +14,56 @@ int main(int argc, char** argv) {
 	srand(time(NULL));
 	system("Color 02");
 	
-	// variabili casuali per rendere il gioco piu' divertente
-	short debGoblin = rand()%6+ 1;
-	short puntCecoGolem = rand()%3 + 1;
-	short Mago = rand()%6 + 1;
-	short angol = rand()%120 + 1;
-	short api = rand()%2 + 1;
-	
-	// variabili di controllo definite
 	short rigiocare = 1;
-	short sceltaR = 0;
-	short giocare = 0;
-	short azione = 0;
-	short mossa = 0;
-	short tiroG = 0;
-	short parola = 0;
+	short saltaMenu;
+
+	while(rigiocare) {
+		// variabili casuali per rendere il gioco piu' divertente
+		short debGoblin = rand()%6 + 1;
+		short puntCecoGolem = rand()%3 + 1;
+		short Mago = rand()%6 + 1;
+		short angol = rand()%120 + 1;
+		short api = rand()%2 + 1;
 		
-	bool vittoria = false;
-	bool errGolem = true;
-	
-	// il menu'
-	cout << "--Menu'--\nvuoi giocare?\n1- si\n2- no\ntu: ";
-	cin >> giocare;
-	
-	// lo swtich per giocare o no
-	switch(giocare) {
+		// variabili di controllo definite
+		short sceltaR = 0;
+		short giocare = 0;
+		short azione = 0;
+		short mossa = 0;
+		short tiroG = 0;
+		short parola = 0;
+			
+		bool vittoria = false;
+		bool errGolem = true;
 		
-		case 1:
-			while(rigiocare) {
-				cout << "\nsistema: hai selezionato di giocare!\n\n";
+		if(saltaMenu != 1) {
+			// il menu'
+			cout << "--Menu'--\nvuoi giocare?\n1- si\n2- no\ntu: ";
+			cin >> giocare;
+		}
+
+		else if (saltaMenu == 1)
+		{
+			giocare = 1;
+		}
+		
+		else {
+			cout << err << endl;
+		}
+
+		// lo swtich per giocare o no
+		switch(giocare) {
+			
+			case 1:
+				giocare = 0;
+				if (saltaMenu != 1) {
+					cout << "\nsistema: hai selezionato di giocare!\n\n";
+				}
 				cout << "narratore: buongiorno avventuriero, io sono un'entita senza materia che parlera della tua storia, per cominciare devi uccidere il mago astolfo, un'uomo potente che a deciso di uccidere tutti quelli che non mangiavano la pizza il sabato, ma prima dovrai afrontare tanti suoi seguaci\n\n";
 				cout << "sistema: puoi fare le seguenti azioni:\n1- esci\n2- combatti\n3- scappa\n" << "tu: "; // le azioni che si possono svolgere
 				cin >> azione;
 				cout << endl;
-				
+					
 				// altro swtich per scegliere se combattere (modalita normale), uscire o scappare(modalita difficile)
 				switch(azione) {
 					case 1:
@@ -71,7 +87,7 @@ int main(int argc, char** argv) {
 								cout << endl;
 							}
 							
-							else if(mossa != debGoblin and  i == 3) {
+							else if(mossa != debGoblin and i == 5 and mossa > 0 and mossa < 7) {
 								cout << "";
 							}
 							
@@ -96,7 +112,7 @@ int main(int argc, char** argv) {
 								cin >> mossa;
 								cout << endl;
 								
-								if(mossa == puntCecoGolem and mossa > 0 and mossa < 3) {
+								if(mossa == puntCecoGolem and mossa > 0 and mossa < 4) {
 									// metto una condizione che per essere vera la mossa o puntocecogolem(stessa cosa per conseguenza) deve valere 2, e pure api che sara 1 o 2 pseudo-casulmente
 									if (mossa == 2 and api == 2) {
 										cout << "narratore: no sei stato punto da un nido d'api\n\n";
@@ -114,7 +130,7 @@ int main(int argc, char** argv) {
 								
 								else if(mossa != puntCecoGolem and mossa > 0 and mossa > 0 and mossa < 4) {
 									cout << "narratore: o no ti a visto, mi dispiace amico.\n\n";
-									cout << "sistema: sei morto";
+									cout << "sistema: sei morto\n";
 									errGolem = false;
 								}
 								
@@ -131,11 +147,11 @@ int main(int argc, char** argv) {
 											
 										case 2:
 											cout << "Mago: cosaaa??, scusa padrone, chiedo umilmente perdono.\n\n";
-											cout << "Sistema: hai vinto!\n";
+											cout << "Sistema: hai vinto!\n\n";
 											break;
 											
 										case 3:
-											cout << "*il mago prende la pala con una mano*, adesso terminero la tua esistenza\n\n";
+											cout << "*il mago prende la pala con una mano*, Mago: adesso terminero la tua esistenza\n\n";
 											cout << "Sistema: sei morto\n";
 											break;
 							}
@@ -149,6 +165,7 @@ int main(int argc, char** argv) {
 					break;
 					
 					case 3:
+						giocare = 0;
 						cout << "Sistema: hai selezionato di scappare!\n\n";
 						cout << "Narratore: non vabene che tu scappi!, adesso rendero il tutto piu' difficile >:(, dovrai affrontare un elettrone.\n\n";
 						cout << "Sistema: devi lanciare un protone verso un elettrone selezionando l'angolazione di tiro(max. 120 gradi)\n";
@@ -171,25 +188,26 @@ int main(int argc, char** argv) {
 				}
 				
 				// adesso chedo se vuole rigiocare atraverso uno switch e il ciclo, lo so che potevo usare direttamente rigiocare ma cosi 0 sarebbe stato di uscire e tutti gli altri numeri di continuare ma io volevo specificatamente solo 1 e 2 + errore
-				cout << "\nSistema: rigiocare?:\n1- si\n2- no\ntu:";
+				cout << "\nSistema: rigiocare?:\n1- si\n2- no\ntu: ";
 				cin >> sceltaR;
 				
 				switch(sceltaR) {
 					case 1:
 						cout << "Sistema: hai scelto di rigiocare\n\n";
+						saltaMenu = 1;
 						rigiocare = 1;
 						break;
 						
 					case 2:
 						rigiocare = 0;
 						break;
+
 					default:
-						cout << err << "(ripartira)\n"; 
+						cout << err << "(ripartira)\n";
+						saltaMenu = 1;
 						rigiocare = 1;
-						break;
 				
 				}
-		}
 		break;
 		case 2:
 			cout << "\nsistema: hai selezionato di uscire!\n";
@@ -197,7 +215,8 @@ int main(int argc, char** argv) {
 					
 		default:
 			cout << err;
-			}
+		}
+	}
 
 	return 0;
 }
