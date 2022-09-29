@@ -1,12 +1,9 @@
-#include <iostream>
-using namespace std;
-
 #include "sino.h"
 
 /* questo programma serve per mettere due if per un si/no con output 1, 2 e 3 per manipolare la risposta ("sino" sta per si no)
 1- errore
 2- si
-3- no */
+3- no*/
 
 short sino(string risp) {
     

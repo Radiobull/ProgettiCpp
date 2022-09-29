@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 #include "sino.h"
 
 int main() {
