@@ -3,7 +3,7 @@ qua metterò tutti i progetti scritti in c++ che meritano di essere visti.
 se volete darmi qualche consiglio su come migliorarmi ditemelo che lo apprezzo davvero tanto ma se c'è scritto datato non è più in manutenzione.
 
 ## siti buoni che consiglio per cpp
-per chi non ha mai usato cpp e vuole imparare con un sito molto semplice e striminzioto c'e [weschool](https://www.w3schools.com/cpp/default.asp) che ha pure un ide integrato, per chi vuole qualcosa di più avanztato c'è [html.it](https://www.html.it/guide/guida-c2/) ma che puo confondere per chi non ha mai programmato e/o si stanca a leggere.
+per chi non ha mai usato cpp e vuole imparare con un sito molto semplice e striminzioto c'e [w3schools](https://www.w3schools.com/cpp/default.asp) che ha pure un ide integrato, per chi vuole qualcosa di più avanztato c'è [html.it](https://www.html.it/guide/guida-c2/) ma che puo confondere per chi non ha mai programmato e/o si stanca a leggere.
 
 ## bubble sort
 algoritmo di ordinamento inefficente, ma è stato scritto in parte con il mio intuito.
