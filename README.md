@@ -20,7 +20,7 @@ videogioco che fa l'uso della semi-randomizzazione dei seed,
 ## pizzeria arrays
 uno dei miei primi programmi con gli array.
 
-## risotante 2.0
+## ristorante 2.0
 programma svilupato per sperimentare con le scelte (datato)
 
 ## sino
