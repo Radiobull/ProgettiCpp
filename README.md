@@ -25,3 +25,6 @@ programma svilupato per sperimentare con le scelte (datato)
 
 ## sino
 sino è un una funzione introducibile in altri programmi, essa funge da gruppo if per il si/no e altro alle domande.
+
+## criptazione D.B.I
+D.B.I sta in modo ironico a *Daniele* e *Bravo* in *Informatica*. l'algoritmo e una revisione molto semplice del cifrario di cesare con appunto aggiunte mie per cercare di renderlo più sicuro ma al contempo molto aprocabile ai novizzi. la parte col modulo serve a prendere la prima cifra e inseguito pure le altre mettendole in sieme, 123 [%](https://it.wikipedia.org/wiki/Operazione_modulo) 10 dara 3 e 123 [%](https://it.wikipedia.org/wiki/Operazione_modulo) 100 dara 23 e cosi via. fun fact: sono rimasto sorpreso come si possono trattare le stringhe come array.
