@@ -28,10 +28,34 @@ int main() {
 	cascadiaCode.loadFromFile("font\\CascadiaCode.ttf");
 	Text testo;
 	testo.setFont(cascadiaCode);
+	testo.setFillColor(Color::Black);
+
+	Texture castello;
+	castello.loadFromFile("immagini\\castello.jpg");
+	Sprite sfondo;
+	sfondo.setTexture(castello);
+	sfondo.setPosition(Vector2f(0, 0));
+
+	Texture castelloMenu;
+	castelloMenu.loadFromFile("immagini\\castelloMenu.jpg");
+	Sprite sfondoMenu;
+	sfondoMenu.setTexture(castelloMenu);
+	sfondoMenu.setPosition(Vector2f(0, 0));
+
+	Texture scritta;
+	scritta.loadFromFile("immagini\\titolo.png");
+	Sprite titolo;
+	titolo.setTexture(scritta);
+	titolo.setPosition(Vector2f(170, 0));
+	titolo.setScale(0.4, 0.4);
+
+	Image icona;
+	icona.loadFromFile("immagini\\icona.png");
 
 	// render della finestra
-    RenderWindow finestra(VideoMode(700, 500), "Scappa Da astolfo", sf::Style::Titlebar | sf::Style::Close);
+    RenderWindow finestra(VideoMode(700, 500), "Scappa Da Astolfo", sf::Style::Titlebar | sf::Style::Close);
 	finestra.setFramerateLimit(60);
+	finestra.setIcon(icona.getSize().x, icona.getSize().y, icona.getPixelsPtr());
 
 	// codice della finestra
 	while (finestra.isOpen()) {
@@ -44,6 +68,7 @@ int main() {
 			if (Keyboard::isKeyPressed(Keyboard::Num1) and difficolta == 0) difficolta = 1;
 			if (Keyboard::isKeyPressed(Keyboard::Num2) and difficolta == 0) difficolta = 5;
 			if (Keyboard::isKeyPressed(Keyboard::Num3) and difficolta == 0) difficolta = 7;
+			//if (Keyboard::isKeyPressed(Keyboard::Num4) and difficolta == 0) difficolta = 7;
 			if (Keyboard::isKeyPressed(Keyboard::Enter) and difficolta != 0) {
 
 				difficolta = 0;
@@ -59,11 +84,13 @@ int main() {
 
 		if (difficolta == 0) {
 
-			testo.setString("MENU:\nscegliere una difficolta tra:\n1- facile\n2- media\n3- difficile");
-
+			testo.setString("scegliere una difficolta tra:\n1- facile\n2- media\n3- difficile");
+			testo.setPosition(Vector2f(0, 55));
 			// rendering di entita
 			finestra.clear();
+			finestra.draw(sfondoMenu);
 			finestra.draw(testo);
+			finestra.draw(titolo);
 			finestra.display();
 
 		}
@@ -72,6 +99,7 @@ int main() {
 			
 			// scritta
 			testo.setString("muovi il mouse per scappare da astolfo,\nse ti prende sei morto!!!\npunteggio: " + to_string(punteggio++));
+			testo.setPosition(Vector2f(0, 0));
 
 			// movimento con il mouse
 
@@ -122,20 +150,22 @@ int main() {
 
 			// rendering di entita
 			finestra.clear();
+			finestra.draw(sfondo);
 			finestra.draw(giocatore);
-			finestra.draw(testo);
 			finestra.draw(nemico);
+			finestra.draw(testo);
 			finestra.display();
 
 		}
 
 		else {
 
-			testo.setPosition(190, 250);
+			testo.setPosition(135, 150);
 			testo.setString("hai perso!!! :(\npunteggio: " + to_string(punteggio) + "\npremere invio per riavviare");
 
 			// rendering di entita
 			finestra.clear();
+			finestra.draw(sfondoMenu);
 			finestra.draw(testo);
 			finestra.display();
 
