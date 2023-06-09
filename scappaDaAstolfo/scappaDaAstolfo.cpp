@@ -1,3 +1,5 @@
+#include <fstream>
+#include <string>
 #include <SFML/Graphics.hpp>
 using namespace sf;
 using namespace std;
@@ -9,6 +11,8 @@ int main() {
 	Vector2f assi;
 	int punteggio = 0;
 	int difficolta = 0;
+	string record;
+	//bool modalitaSpeciale = false;
 
 	// creazione di estetici
 	Texture nerdEmoji;
@@ -51,6 +55,10 @@ int main() {
 	Image icona;
 	icona.loadFromFile("immagini\\icona.png");
 
+	ifstream fileLettura;
+	fileLettura.open("punteggio.txt");
+	getline(fileLettura, record);
+
 	// render della finestra
 	RenderWindow finestra(VideoMode(700, 500), "Scappa Da Astolfo", sf::Style::Titlebar | sf::Style::Close);
 	finestra.setFramerateLimit(60);
@@ -67,7 +75,7 @@ int main() {
 			if (Keyboard::isKeyPressed(Keyboard::Num1) and difficolta == 0) difficolta = 1;
 			if (Keyboard::isKeyPressed(Keyboard::Num2) and difficolta == 0) difficolta = 5;
 			if (Keyboard::isKeyPressed(Keyboard::Num3) and difficolta == 0) difficolta = 7;
-			//if (Keyboard::isKeyPressed(Keyboard::Num4) and difficolta == 0) difficolta = 7;
+			//if (Keyboard::isKeyPressed(Keyboard::Num9) and difficolta == 0) modalitaSpeciale = true;
 			if (Keyboard::isKeyPressed(Keyboard::Enter) and difficolta != 0) {
 
 				difficolta = 0;
@@ -83,7 +91,7 @@ int main() {
 
 		if (difficolta == 0) {
 
-			testo.setString("scegliere una difficolta tra:\n1- facile\n2- media\n3- difficile");
+			testo.setString("scegliere una difficolta tra:\n1- facile\n2- media\n3- difficile\nrecord: " + record);
 			testo.setPosition(Vector2f(0, 55));
 
 			// rendering di entita
@@ -94,6 +102,12 @@ int main() {
 			finestra.display();
 
 		}
+
+		/*else if (modalitaSpeciale and !giocatore.getGlobalBounds().intersects(nemico.getGlobalBounds())) {
+
+			testo.setString("Non ti spieghero il tutorial >:)\npunteggio: " + to_string(punteggio++));
+
+		}*/
 
 		else if (!giocatore.getGlobalBounds().intersects(nemico.getGlobalBounds())) {
 
@@ -161,6 +175,18 @@ int main() {
 
 			testo.setPosition(135, 150);
 			testo.setString("hai perso!!! :(\npunteggio: " + to_string(punteggio) + "\npremere invio per riavviare");
+
+			// riscrive il file se e solo se il punteggio è piu alto in più riscrivo la variabile record cosi lo vedo subito invece di apsettare che si aggiorni dal file.txt
+			if (stoi(record) < punteggio) {
+
+				ofstream fileScrittura("punteggio.txt");
+				fileScrittura << to_string(punteggio);
+				fileScrittura.close();
+				record = to_string(punteggio);
+
+			}
+
+			fileLettura.close();
 
 			// rendering di entita
 			finestra.clear();
