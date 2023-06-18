@@ -8,7 +8,10 @@ using namespace std;
 
 /*
 non so perchè ma nella soluzione di visual studio posso riscrivere i file ma quando trasferisco i file no.
+e non posso mettere le static library dell'audio e system
 */
+
+//TODO: mettere i punti come tempo se è possibile
 
 int main() {
 
@@ -19,15 +22,13 @@ int main() {
 	int difficolta = 0;
 	//string record;
 	int record = 0;
-	short suono = 50;
+	//short suono = 50;
 	//bool modalitaSpeciale = false;
-	Music musica;
-	musica.openFromFile("suoni\\music.ogg");
-	musica.setLoop(true);
-	musica.play();
+	//Music musica;
+	//musica.openFromFile("suoni\\music.ogg");
+	//musica.play();
 
-
-	// creazione di estetici
+	// creazione di visivi
 	Texture nerdEmoji;
 	nerdEmoji.loadFromFile("immagini\\nerdEmoji.jpg");
 	Sprite giocatore;
@@ -53,9 +54,9 @@ int main() {
 	testoGenerico.setFont(cascadiaCode);
 	testoGenerico.setFillColor(Color::Black);
 
-	Text testoSuono;
+	/*Text testoSuono;
 	testoSuono.setFont(cascadiaCode);
-	testoSuono.setFillColor(Color::Black);
+	testoSuono.setFillColor(Color::Black);*/
 
 	Texture castello;
 	castello.loadFromFile("immagini\\castello.jpg");
@@ -92,7 +93,7 @@ int main() {
 	// codice della finestra
 	while (finestra.isOpen()) {
 
-		testoSuono.setString("volume: " + to_string(suono));
+		//testoSuono.setString("volume: " + to_string(suono));
 
 		// eventi
 		while (finestra.pollEvent(evento)) {
@@ -102,10 +103,10 @@ int main() {
 			if (Keyboard::isKeyPressed(Keyboard::Num1) and difficolta == 0) difficolta = 1;
 			if (Keyboard::isKeyPressed(Keyboard::Num2) and difficolta == 0) difficolta = 5;
 			if (Keyboard::isKeyPressed(Keyboard::Num3) and difficolta == 0) difficolta = 7;
-			if(Keyboard::isKeyPressed(Keyboard::Up) and suono < 100) musica.setVolume(suono++);
+			/*if (Keyboard::isKeyPressed(Keyboard::Up) and suono < 100) musica.setVolume(suono++);
 			if (Keyboard::isKeyPressed(Keyboard::Down) and suono > 0) musica.setVolume(suono--);
 			if (Keyboard::isKeyPressed(Keyboard::Left)) musica.pause();
-			if (Keyboard::isKeyPressed(Keyboard::Right)) musica.play();
+			if (Keyboard::isKeyPressed(Keyboard::Right)) musica.play();*/
 			//if (Keyboard::isKeyPressed(Keyboard::Num9) and difficolta == 0) modalitaSpeciale = true;
 			if (Keyboard::isKeyPressed(Keyboard::Enter) and difficolta != 0) {
 
@@ -125,7 +126,7 @@ int main() {
 			//testoGenerico.setString("scegliere una difficolta tra:\n1- facile\n2- media\n3- difficile\nrecord: " + record);
 			testoGenerico.setString("scegliere una difficolta tra:\n1- facile\n2- media\n3- difficile\nrecord della sessione: " + to_string(record));
 			testoGenerico.setPosition(Vector2f(0, 55));
-			testoSuono.setPosition(500, 450);
+			//testoSuono.setPosition(500, 450);
 
 			// rendering di entita
 			finestra.clear();
@@ -133,7 +134,7 @@ int main() {
 			finestra.draw(testoGenerico);
 			finestra.draw(titolo);
 			finestra.draw(commandi);
-			finestra.draw(testoSuono);
+			//finestra.draw(testoSuono);
 			finestra.display();
 
 		}
@@ -149,7 +150,7 @@ int main() {
 			// scritta
 			testoGenerico.setString("muovi il mouse per scappare da astolfo,\nse ti prende sei morto!!!\npunteggio: " + to_string(punteggio++));
 			testoGenerico.setPosition(Vector2f(0, 0));
-			testoSuono.setPosition(500, 450);
+			//testoSuono.setPosition(500, 450);
 
 			// movimento con il mouse
 			giocatore.setPosition(Vector2f(Mouse::getPosition(finestra).x - 50, Mouse::getPosition(finestra).y - 50));
@@ -203,7 +204,7 @@ int main() {
 			finestra.draw(giocatore);
 			finestra.draw(nemico);
 			finestra.draw(testoGenerico);
-			finestra.draw(testoSuono);
+			//finestra.draw(testoSuono);
 			finestra.display();
 
 		}
@@ -212,7 +213,7 @@ int main() {
 
 			testoGenerico.setPosition(135, 150);
 			testoGenerico.setString("hai perso!!! :(\npunteggio: " + to_string(punteggio) + "\npremere invio per riavviare");
-			testoSuono.setPosition(500, 450);
+			//testoSuono.setPosition(500, 450);
 
 			if (record < punteggio)
 				record = punteggio;
@@ -233,7 +234,7 @@ int main() {
 			finestra.clear();
 			finestra.draw(sfondoMenu);
 			finestra.draw(testoGenerico);
-			finestra.draw(testoSuono);
+			//finestra.draw(testoSuono);
 			finestra.display();
 
 		}
